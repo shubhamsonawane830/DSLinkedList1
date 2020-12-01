@@ -6,7 +6,7 @@ public class MyLinkedList<K> {
 
 	public MyLinkedList() {
 		this.head = null;
-		this.tail = null;
+		this.tail = null ;
 	}
 
 	public void add(INode<K> newNode) {
