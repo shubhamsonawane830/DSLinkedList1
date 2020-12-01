@@ -1,6 +1,11 @@
 package com.blz.dslinkedlist;
 
-public class MyLinkedList<K> {
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
+
+public class MyLinkedList<K extends Comparable<K>> {
 	public static INode head;
 	public static INode tail;
 
@@ -19,13 +24,13 @@ public class MyLinkedList<K> {
 			this.head.setNext(tempNode);
 		}
 	}
-	
+
 	public void printMyNodes() {
 		StringBuffer myNodes = new StringBuffer("My Nodes: ");
 		INode tempNode = head;
-		while(tempNode.getNext() != null) {
+		while (tempNode.getNext() != null) {
 			myNodes.append(tempNode.getKey());
-			if(!tempNode.equals(tail)) 
+			if (!tempNode.equals(tail))
 				myNodes.append("->");
 			tempNode = tempNode.getNext();
 		}
@@ -77,7 +82,7 @@ public class MyLinkedList<K> {
 		}
 		return tempNode1;
 	}
-	
+
 	public void searchAndInsertValue(K key, INode newNode) {
 		INode tempNode = head;
 		while (!(tempNode.getKey() == key)) {
@@ -85,5 +90,37 @@ public class MyLinkedList<K> {
 		}
 		search(key);
 		insert(tempNode, newNode);
+	}
+
+	public int size() {
+		int size = 0;
+		if (this.head == null) {
+			return size;
+		}
+		INode tempNode = this.head;
+		while (tempNode.getNext() != null) {
+			tempNode = tempNode.getNext();
+			size++;
+		}
+		System.out.println(size + 1);
+		return size + 1;
+	}
+
+	public INode searchAndDelete(K key) {
+		INode firstNode = head;
+		INode tempNode = head;
+		while (!(tempNode.getKey() == key)) {
+			tempNode = tempNode.getNext();
+		}
+		this.head = tempNode;
+		pop();
+		INode LastNode = this.head;
+		this.head = firstNode;
+		INode tempNode1 = this.head;
+		while (tempNode1.getNext().getKey() != key) {
+			tempNode1 = tempNode1.getNext();
+		}
+		tempNode1.setNext(LastNode);
+		return this.head;
 	}
 }
