@@ -17,7 +17,7 @@ public class TestLinkedList {
 		boolean result = myFirstNode.getNext().equals(mySecondNode) && mySecondNode.getNext().equals(myThirdNode);
 		Assert.assertTrue(result);
 	}
-	
+
 	@Test
 	public void given3NumbersWhenAddedToLinkedListShouldBeAddedAtTheTop() {
 		MyNode<Integer> myFirstNode = new MyNode<Integer>(70);
@@ -31,7 +31,7 @@ public class TestLinkedList {
 				&& MyLinkedList.tail.equals(myFirstNode);
 		Assert.assertTrue(result);
 	}
-	
+
 	@Test
 	public void given3NumbersWhenAppendedToLinkedListShouldBeAddedAtTheLast() {
 		MyNode<Integer> myFirstNode = new MyNode<Integer>(56);
@@ -43,6 +43,34 @@ public class TestLinkedList {
 		lst.append(myThirdNode);
 		boolean result = MyLinkedList.head.equals(myFirstNode) && MyLinkedList.head.getNext().equals(mySecondNode)
 				&& MyLinkedList.tail.equals(myThirdNode);
+		Assert.assertTrue(result);
+	}
+
+	@Test
+	public void given3NumbersWhenInsertedToLinkedListShouldBeAddedInBetweenElements() {
+		MyNode<Integer> myFirstNode = new MyNode<Integer>(56);
+		MyNode<Integer> mySecondNode = new MyNode<Integer>(30);
+		MyNode<Integer> myThirdNode = new MyNode<Integer>(70);
+		MyLinkedList lst = new MyLinkedList();
+		lst.add(myFirstNode);
+		lst.append(myThirdNode);
+		lst.insert(myFirstNode, myThirdNode);
+		boolean result = MyLinkedList.head.equals(myFirstNode) && MyLinkedList.head.getNext().equals(mySecondNode)
+				&& MyLinkedList.tail.equals(myThirdNode);
+		Assert.assertTrue(result);
+	}
+
+	@Test
+	public void given3NumbersWhenAddedtoLinkedListAndDeleteFirstElement() {
+		MyNode<Integer> myFirstNode = new MyNode<Integer>(56);
+		MyNode<Integer> mySecondNode = new MyNode<Integer>(30);
+		MyNode<Integer> myThirdNode = new MyNode<Integer>(70);
+		MyLinkedList lst = new MyLinkedList();
+		lst.add(myFirstNode);
+		lst.pop();
+		lst.append(mySecondNode);
+		lst.append(myThirdNode);
+		boolean result = MyLinkedList.head.equals(mySecondNode) && MyLinkedList.tail.equals(myThirdNode);
 		Assert.assertTrue(result);
 	}
 }
