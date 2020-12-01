@@ -19,16 +19,22 @@ public class MyLinkedList<K> {
 			this.head.setNext(tempNode);
 		}
 	}
-	
+
 	public void append(INode<K> myNode) {
-		if(this.head == null) {
+		if (this.head == null) {
 			this.head = myNode;
 		}
-		if(this.tail == null) {
+		if (this.tail == null) {
 			this.tail = myNode;
-		}else {
+		} else {
 			this.tail.setNext(myNode);
 			this.tail = myNode;
 		}
+	}
+
+	public void insert(INode myNode, INode newNode) {
+		INode tempNode = myNode.getNext();
+		myNode.setNext(newNode);
+		newNode.setNext(tempNode);
 	}
 }
